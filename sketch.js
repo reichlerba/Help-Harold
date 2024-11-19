@@ -23,8 +23,9 @@ let imgLivingRoom4;
 let livingRoomMusic4;
 let imgKitchen6;
 let kitchenMusic6;
-let imgLibrary8;
-let libraryMusic8;
+let imgMusicRoom8;
+let musicRoomMusic8;
+let distortedMusic9;
 
 //declare all global variables
 let scene; //0: Landing screen, 1: Game1.1, etc.
@@ -217,8 +218,8 @@ function draw() {
       setup1_5Scene8();
     }
     if(timer > (60*60)) { // update time**
-      //libraryMusic8.stop();
-      //libraryMusic8.play();
+      //musicRoomMusic8.stop();
+      //musicRoomMusic8.play();
       timer = 0;
     }
   }
@@ -948,8 +949,8 @@ function checkPressed7() {
 
 function setup1_5Scene8() { //room music (used to be library)
   //draw background image
-  imgLibrary8.resize(500, 500);
-  image(imgLibrary8, 0, 0, 400, 500, 0, 0, 400, 500);
+  imgMusicRoom8.resize(500, 500);
+  image(imgMusicRoom8, 0, 0, 400, 500, 0, 0, 400, 500);
   //draw question box
   fill("#c07e67");
   noStroke();
@@ -960,13 +961,13 @@ function setup1_5Scene8() { //room music (used to be library)
   text("What room are you in?", 200, 375);
   //draw buttons (3 top row, 3 bottom row)
   buttonBathroom8 = createAndDrawRoomButton("Bathroom", 140, 443, buttonIncorrectClicked8); //5th
-  buttonMusicRoom8 = createAndDrawRoomButton("Music Room", 270, 443, buttonIncorrectClicked8); //6th
+  buttonMusicRoom8 = createAndDrawRoomButton("Music Room", 270, 443, buttonMusicRoomClicked8); //6th correct
   buttonGreenHouse8 = createAndDrawRoomButton("Green House", 270, 395, buttonIncorrectClicked8); //3rd
   buttonLivingRoom8 = createAndDrawRoomButton("Living Room", 10, 443, buttonIncorrectClicked8); //4th
-  buttonLibrary8 = createAndDrawRoomButton("Library", 140, 395, buttonLibraryClicked8); //correct, 2nd
+  buttonLibrary8 = createAndDrawRoomButton("Library", 140, 395, buttonIncorrectClicked8); // 2nd
   buttonBedroom8 = createAndDrawRoomButton("Bedroom", 10, 395, buttonIncorrectClicked8); //1st
 }
-function buttonLibraryClicked8() {
+function buttonMusicRoomClicked8() {
   correctSound.play();
   answerSent8();
   drawCorrectTextBoxGame1();
@@ -987,12 +988,12 @@ function answerSent8() {
   background("#c07e67");
   //write description
   textSize(20);
-  text("This is the library.", 200, 370);
-  text("Here, you can find books", 200, 410);
-  text("and read as much as you want.", 200, 450);
+  text("This is the music room.", 200, 370);
+  text("Here, you can listen to your", 200, 410);
+  text("favorite songs and have fun!", 200, 450);
   //show image again
-  imgLibrary8.resize(340, 340);
-  image(imgLibrary8, 30, 145, 340, 180, 0, 90, 340, 180);
+  imgMusicRoom8.resize(340, 340);
+  image(imgMusicRoom8, 30, 145, 340, 180, 0, 90, 340, 180);
 
   drawFinishButton();
 }
