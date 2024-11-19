@@ -1070,6 +1070,6 @@ function setupFinalCongratsScene10() {
   background("#c07e67");
   fill(0);
   textSize(24);
-  text("Congratulations!", 200, 160);
-  text("You are now ready for your day!", 200, 240);
+  text("Congratulations!", 200, 200);
+  text("You are now ready\nfor your day!", 200, 270);
 }
