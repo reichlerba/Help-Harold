@@ -229,7 +229,7 @@ function draw() {
   if(scene == 9) {
     if(boolSetupScene9) {
       boolSetupScene9 = false;
-      setup1_5Scene9();
+      setup3_2Scene9();
     }
     if(timer > (60*39)) {
       distortedMusic9.stop();
