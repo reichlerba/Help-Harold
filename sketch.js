@@ -189,7 +189,7 @@ function draw() {
       boolSetupScene6 = false;
       setup1_4Scene6();
     }
-    if(timer > (60*60)) { // update time**
+    if(timer > (60*60)) {
       kitchenMusic6.stop();
       kitchenMusic6.play();
       timer = 0;
@@ -209,7 +209,7 @@ function draw() {
         text("Click anywhere to continue.", 200, 460);
       }
     }
-    if(timer > (60*60)) { // update time to match line 184
+    if(timer > (60*60)) {
       kitchenMusic6.stop();
       kitchenMusic6.play();
       timer = 0;
@@ -220,7 +220,7 @@ function draw() {
       boolSetupScene8 = false;
       setup1_5Scene8();
     }
-    if(timer > (60*60)) { // update time**
+    if(timer > (60*60)) {
       musicRoomMusic8.stop();
       musicRoomMusic8.play();
       timer = 0;
@@ -231,7 +231,7 @@ function draw() {
       boolSetupScene9 = false;
       setup1_5Scene9();
     }
-    if(timer > (60*60)) {
+    if(timer > (60*39)) {
       distortedMusic9.stop();
       distortedMusic9.play();
       timer = 0;
@@ -428,7 +428,7 @@ function finishButtonClicked() {
       break;
     case 5:
       boolSetupScene6 = true;
-      timer = (60*60); //update to match line 184
+      timer = (60*60);
       break;
     case 6:
       boolSetupScene7 = true;
@@ -436,11 +436,11 @@ function finishButtonClicked() {
       break;
     case 7:
       boolSetupScene8 = true;
-      timer = (60*60); //update to match line 215
+      timer = (60*60);
       break;
     case 8:
       boolSetupScene9 = true;
-      timer = (60*60); //update to match line 221 ish
+      timer = (60*39);
       break;
     case 9:
       boolSetupScene10 = true;
@@ -475,9 +475,6 @@ function finishButtonClicked() {
   }
   if(kitchenMusic6 && kitchenMusic6.isPlaying()) {
     kitchenMusic6.pause();
-  }
-  if(libraryMusic8 && libraryMusic8.isPlaying()) {
-    libraryMusic8.pause();
   }
   if(musicRoomMusic8 && musicRoomMusic8.isPlaying()) {
     musicRoomMusic8.stop();
