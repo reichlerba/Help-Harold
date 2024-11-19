@@ -7,9 +7,9 @@ let imgShirtIcon0;
 let imgSinkIcon0;
 let imgCouchIcon0;
 let imgGramophoneIcon0;
+let img2ndGramophoneIcon0;
 let imgKnifeIcon0;
 let imgTeaIcon0;
-let imgBookIcon0;
 let imgGuitarIcon0;
 let welcomeSong0;
 let welcomeDoorSFX0;
@@ -256,7 +256,12 @@ function preload() {
   imgBedIcon0 = loadImage('./assets/bedIcon.png');
   imgShirtIcon0 = loadImage('./assets/shirtIcon.png');
   imgSinkIcon0 = loadImage('./assets/sinkIcon.png');
-  //add all icons ***
+  imgCouchIcon0 = loadImage('./assets/couchIcon (1).png');
+  imgGramophoneIcon0 = loadImage('./assets/gramophone-Photoroom.png');
+  img2ndGramophoneIcon0 = loadImage('./assets/gramophone-Photoroom.png');
+  imgKnifeIcon0 = loadImage('./assets/knifeIcon (1).png');
+  imgTeaIcon0 = loadImage('./assets/tea.png');
+  imgGuitarIcon0 = loadImage('./assets/guitar (1).png');
   imgBedroom1 = loadImage('./assets/bedroom_old.jpg');
   welcomeSong0 = loadSound('./assets/WelcomeJazz.mp3');
   welcomeDoorSFX0 = loadSound('./assets/welcomeDoor.mp3');
@@ -292,21 +297,34 @@ function setupLandingScene0() {
   imgSinkIcon0.resize(30,30);
   image(imgSinkIcon0, 110, 81);
   line(150, 66, 150, 56);
-  
+  imgCouchIcon0.resize(40,40);
+  image(imgCouchIcon0, 130, 20);
   line(175, 66, 175, 76);
-  
+  imgGramophoneIcon0.resize(30, 30);
+  image(imgGramophoneIcon0, 160, 81);
   line(200, 66, 200, 56);
-  
+  imgKnifeIcon0.resize(30, 30);
+  image(imgKnifeIcon0, 185, 25);
   line(225, 66, 225, 76);
-  
+  imgTeaIcon0.resize(54, 40);
+  image(imgTeaIcon0, 198, 75);
   line(250, 66, 250, 56);
-  
+  imgGuitarIcon0.resize(46, 46);
+  image(imgGuitarIcon0, 225, 10);
   line(275, 66, 275, 76);
-  
+  img2ndGramophoneIcon0.resize(30, 30);
+  image(imgGramophoneIcon0, 260, 81);
   line(300, 66, 300, 56);
   
   line(325, 66, 325, 76);
   
+  textAlign(CENTER, CENTER);
+  fill("white");
+  textFont('Verdana');
+  textSize(17);
+  text("Pay attention to the music!!", 200, 445);
+  text("Click anywhere to start", 200, 340);
+
   
   //button over whole welcome screen
   welcomeButton0 = createButton('');
