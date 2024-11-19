@@ -87,6 +87,9 @@ let buttonLivingRoom8;
 let buttonGreenHouse8;
 let buttonMusicRoom8;
 let buttonBathroom8;
+let buttonMusicRoom9;
+let buttonLibrary9;
+let buttonKitchen9;
 
 //setup
 let boolSetupScene1 = false;
@@ -218,8 +221,29 @@ function draw() {
       setup1_5Scene8();
     }
     if(timer > (60*60)) { // update time**
-      //musicRoomMusic8.stop();
-      //musicRoomMusic8.play();
+      musicRoomMusic8.stop();
+      musicRoomMusic8.play();
+      timer = 0;
+    }
+  }
+  if(scene == 9) {
+    if(boolSetupScene9) {
+      boolSetupScene9 = false;
+      setup1_5Scene9();
+    }
+    if(timer > (60*60)) {
+      distortedMusic9.stop();
+      distortedMusic9.play();
+      timer = 0;
+    }
+  }
+  if(scene == 10) {
+    if(boolSetupScene10) {
+      boolSetupScene10 = false;
+      setupFinalCongratsScene10();
+    }
+    if(timer > (60*25.5)) {
+      welcomeSong0.play();
       timer = 0;
     }
   }
@@ -228,14 +252,12 @@ function draw() {
 //preload all assets
 function preload() {
   //preload() logic by Benji Reichler
-  //pngs
   imgWelcomeScreen0 = loadImage('./assets/welcomeScreen.png');
   imgBedIcon0 = loadImage('./assets/bedIcon.png');
   imgShirtIcon0 = loadImage('./assets/shirtIcon.png');
   imgSinkIcon0 = loadImage('./assets/sinkIcon.png');
   //add all icons ***
   imgBedroom1 = loadImage('./assets/bedroom_old.jpg');
-  //mp3s
   welcomeSong0 = loadSound('./assets/WelcomeJazz.mp3');
   welcomeDoorSFX0 = loadSound('./assets/welcomeDoor.mp3');
   correctSound = loadSound('./assets/correct.mp3');
@@ -247,8 +269,9 @@ function preload() {
   livingRoomMusic4 = loadSound('./assets/livingRoom.mp3');
   imgKitchen6 = loadImage('./assets/Kitchen.webp');
   kitchenMusic6 = loadSound('./assets/kitchen.mp3');
-  imgLibrary8 = loadImage('./assets/Library.webp');
-  //libraryMusic8 = loadSound(''); find library music
+  imgMusicRoom8 = loadImage('./assets/Music Room.webp');
+  musicRoomMusic8 = loadSound('./assets/musicRoom.mp3');
+  distortedMusic9 = loadSound('./assets/kitchenDistorted.mp3');
 }
 
 function setupLandingScene0() {
@@ -417,12 +440,14 @@ function finishButtonClicked() {
       break;
     case 8:
       boolSetupScene9 = true;
+      timer = (60*60); //update to match line 221 ish
       break;
     case 9:
       boolSetupScene10 = true;
+      timer = (60*26); 
       break;
     default:
-      // Optional default case if needed
+      // default case if needed
       break;
   }
   scene++;
@@ -453,6 +478,12 @@ function finishButtonClicked() {
   }
   if(libraryMusic8 && libraryMusic8.isPlaying()) {
     libraryMusic8.pause();
+  }
+  if(musicRoomMusic8 && musicRoomMusic8.isPlaying()) {
+    musicRoomMusic8.stop();
+  }
+  if(distortedMusic9 && distortedMusic9.isPlaying()) {
+    distortedMusic9.stop();
   }
 }
 
@@ -994,7 +1025,54 @@ function answerSent8() {
   //show image again
   imgMusicRoom8.resize(340, 340);
   image(imgMusicRoom8, 30, 145, 340, 180, 0, 90, 340, 180);
-
   drawFinishButton();
 }
 
+function setup3_2Scene9() {
+  background("#c07e67");
+  fill(0);
+  textSize(14);
+  text("Where have I heard this song before?", 200, 200);
+  //make buttons
+  buttonKitchen9 = createAndDrawRoomButton("Kitchen", 205, 225, buttonKitchenClicked9);
+  buttonLibrary9 = createAndDrawRoomButton("Library", 75, 225, buttonIncorrectClicked9);
+  buttonMusicRoom9 = createAndDrawRoomButton("Music Room", 140, 275, buttonIncorrectClicked9);
+  text("Warning! The audio is modified", 200, 365);
+}
+function buttonKitchenClicked9() {
+  correctSound.play();
+  answerSent9();
+  //show correct text
+  text("Correct!", 200, 85);
+  textSize(20);
+  text("Good job!", 200, 350);
+}
+function buttonIncorrectClicked9() {
+  incorrectSound.play();
+  answerSent9();
+  //show incorrect text
+  text("Incorrect!", 200, 85);
+  textSize(20);
+  text("This song was played in the kitchen", 200, 350);
+  text("Pay more attention next time!", 200, 390);
+}
+function answerSent9() {
+  buttonKitchen9.remove();
+  buttonLibrary9.remove();
+  buttonMusicRoom9.remove();
+  background("#c07e67");
+  //draw image
+  imgKitchen6.resize(340, 340); //should be unnecessary given each level is played in order
+  image(imgKitchen6, 30, 145, 340, 180, 0, 90, 340, 180);
+  fill(0);
+  textSize(44);
+  drawFinishButton();
+}
+
+function setupFinalCongratsScene10() {
+  background("#c07e67");
+  fill(0);
+  textSize(24);
+  text("Congratulations!", 200, 160);
+  text("You are now ready for your day!", 200, 240);
+}
