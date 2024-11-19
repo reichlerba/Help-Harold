@@ -466,11 +466,7 @@ function setup2_1Scene2() {
     columns2.push(new ColumnsG2(180, sets2[i]-10, 160, 60));
   }
   
-  button2 = createButton("Check");
-  button2.style('background-color','rgb(163,98,75)');
-  button2.style('border','none');//add more styling
-  button2.position(200,450);
-  button2.mousePressed(checkPressed2);
+  button2 = createAndDrawRoomButton("Check", 200-60, 450, checkPressed2);
 }
 function drawScene2() {
   background("#c07e67");
@@ -910,11 +906,7 @@ function setup2_2Scene7() { //task make tea
     columns2.push(new ColumnsG2(180, sets2[i]-10, 160, 60));
   }
   
-  button7 = createButton("Check");
-  button7.style('background-color','rgb(163,98,75)');
-  button7.style('border','none');//add more styling
-  button7.position(200,450);
-  button7.mousePressed(checkPressed7);
+  button7 = createAndDrawRoomButton("Check", 200-60, 450, checkPressed7);
 }
 function drawScene7() {
   background("#c07e67");
@@ -954,7 +946,7 @@ function checkPressed7() {
   }
 }
 
-function setup1_5Scene8() { //room library
+function setup1_5Scene8() { //room music (used to be library)
   //draw background image
   imgLibrary8.resize(500, 500);
   image(imgLibrary8, 0, 0, 400, 500, 0, 0, 400, 500);
