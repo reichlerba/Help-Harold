@@ -426,6 +426,7 @@ function drawFinishButton() {
 }
 function finishButtonClicked() {
   buttonFinish.remove();
+  buttonFinish = null;
   //set which scene should be setup
   switch(scene) {
     case 1: 
@@ -983,6 +984,7 @@ function drawScene7() {
 }
 function checkPressed7() {
   let sortedDraggables7 = [...draggables7].sort((a, b) => a.y - b.y);
+  continueDrawing7 = false;
   for(let i = 0; i < sortedDraggables7.length; i++) {
     if (sortedDraggables7[i].value === order7[i]) {
      sortedDraggables7[i].isCorrect = true;
@@ -993,7 +995,6 @@ function checkPressed7() {
       sortedDraggables7[i].isCorrect = false;
     }
     //check if continueDrawing7 should be false
-    continueDrawing7 = false;
     if(sortedDraggables7[i].isIncorrect) { //will run unless every step is in the correct order
       continueDrawing7 = true;
     }
@@ -1002,6 +1003,8 @@ function checkPressed7() {
     finishNeedsToBeDrawn7 = true;
     correctSound.play();
     button7.remove();
+  } else {
+    incorrectSound.play();
   }
 }
 class ColumnsG2L7 {
