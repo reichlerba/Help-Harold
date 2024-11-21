@@ -46,6 +46,8 @@ let order2 = [
 ];
 let continueDrawing2 = false;
 let finishNeedsToBeDrawn = false;
+let draggables7 = [];
+let sets7 = [90,160,230,300,370];
 let step7 = [ //use columns2, sets2, draggables2 for scene 7 aswell
   "Put tea leaves in tea cup",
   "Pour kettle water\n into tea cup",
@@ -53,6 +55,7 @@ let step7 = [ //use columns2, sets2, draggables2 for scene 7 aswell
   "Fill kettle with water",
   "Let steep and then enjoy"
 ];
+let columns7 = [];
 let order7 = [
   "Fill kettle with water",
   "Turn on kettle",
@@ -205,6 +208,7 @@ function draw() {
     } else {
       if(finishNeedsToBeDrawn7) {
         drawScene7();
+        finishNeedsToBeDrawn7 = false;
         drawFinishButton();
         text("Click anywhere to continue.", 200, 460);
       }
@@ -320,9 +324,8 @@ function setupLandingScene0() {
   textFont('Verdana');
   textSize(17);
   text("Pay attention to the music!!", 200, 445);
-  text("Click anywhere to start", 200, 340);
+  text("Click anywhere to start", 200, 346);
 
-  
   //button over whole welcome screen
   welcomeButton0 = createButton('');
   welcomeButton0.position(0, 0);
@@ -555,14 +558,29 @@ function checkPressed2() {
   }
 }
 function mousePressed() { //will this cause problems
-  for (let d of draggables2) {//clear draggables2 after each level that uses it
-    d.pressed();
+  if(scene==2) {
+    for (let d of draggables2) {
+      d.pressed();
+    }
+  }
+  if(scene==7) {
+    for (let d of draggables7) {
+      d.pressed();
+    }
   }
 }
 function mouseReleased() {
-  for (let d of draggables2) {
-    d.released();
-    d.click();
+  if(scene==2) {
+    for (let d of draggables2) {
+      d.released();
+      d.click();
+    }
+  }
+  if(scene==7) {
+    for (let d of draggables7) {
+      d.released();
+      d.click();
+    }
   }
 }
 class ColumnsG2{
@@ -938,16 +956,14 @@ function answerSent6() {
 
 function setup2_2Scene7() { //task make tea
   //Scene 2 logic and helper methods written by Nathaniel Joseph with some code inspired by ChatGPT and compiled here and tweaked by Benji Reichler
-  draggables2 = []; //clear arrays used in scene 2
-  columns2 = []; //clear arrays used in scene 2
   
   strokeWeight(0.6);
   kitchenMusic6.play();
   for (let i = 0; i < 5; i++) {
-    draggables2.push(new DraggableG2(40, sets2[i], 145, 40, step7[i]));
+    draggables7.push(new DraggableG2L7(40, sets7[i], 145, 40, step7[i]));
   }
   for(let i = 0; i < 5; i++) {
-    columns2.push(new ColumnsG2(180, sets2[i]-10, 160, 60));
+    columns7.push(new ColumnsG2L7(190, sets7[i]-10, 160, 60));
   }
   
   button7 = createAndDrawRoomButton("Check", 200-60, 450, checkPressed7);
@@ -955,10 +971,10 @@ function setup2_2Scene7() { //task make tea
 function drawScene7() {
   background("#c07e67");
   // Draw all draggables
-  for (let c of columns2){
+  for (let c of columns7){
     c.show();
   }
-  for (let d of draggables2) {
+  for (let d of draggables7) {
     d.update();
     d.show();
   }
@@ -966,7 +982,7 @@ function drawScene7() {
   line(160,60,240,60);
 }
 function checkPressed7() {
-  let sortedDraggables7 = [...draggables2].sort((a, b) => a.y - b.y);
+  let sortedDraggables7 = [...draggables7].sort((a, b) => a.y - b.y);
   for(let i = 0; i < sortedDraggables7.length; i++) {
     if (sortedDraggables7[i].value === order7[i]) {
      sortedDraggables7[i].isCorrect = true;
@@ -984,9 +1000,104 @@ function checkPressed7() {
   }
   if(!continueDrawing7) {
     finishNeedsToBeDrawn7 = true;
-    console.log("Finish needs to be drawn for scene 7!");
     correctSound.play();
     button7.remove();
+  }
+}
+class ColumnsG2L7 {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+  }
+  show(){  
+    fill(163,98,75);
+    rect(this.x,this.y,this.w,this.h);
+  }
+}
+class DraggableG2L7 {
+  constructor(x, y, w, h,value) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.value = "";
+    
+    this.value = value;
+    this.dragging = false;
+    this.rollover = false;
+    this.isCorrect = false;
+    this.isIncorrect = false;
+  }
+
+  update() {
+    
+    if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
+      this.rollover = true;
+    } else {
+      this.rollover = false;
+    }
+
+    // Adjust position if being dragged
+    if (this.dragging) {
+      this.x = mouseX + this.offsetX;
+      this.y = mouseY + this.offsetY;
+    }
+  }
+
+  show() {
+    stroke(0);
+    if (this.dragging) {
+      fill(50);
+    } else if (this.rollover) {
+      fill(100);
+    } else {
+      fill("#c07e67");
+    }
+    rect(this.x, this.y, this.w, this.h,5);
+    textFont('Verdana');
+    textSize(11);
+    fill("black");
+    textAlign(CENTER,CENTER);
+    text(this.value,this.x + 75,this.y + 20);
+    
+    if (this.isCorrect) {
+      fill("green");
+      textSize(16);
+      text("✔", this.x + this.w - 10, this.y + this.h - 10);
+      fill("black");
+    }
+    if (this.isIncorrect){
+      fill("red");
+      text("X", this.x + this.w - 10, this.y + this.h - 10);
+      fill("black");
+    }
+  }
+
+  pressed() {
+    if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
+      this.dragging = true;
+      this.offsetX = this.x - mouseX;
+      this.offsetY = this.y - mouseY;
+      
+      draggables7.splice(draggables7.indexOf(this), 1);
+      draggables7.push(this);
+    }
+  }
+
+  released() {
+    this.dragging = false;
+    
+  }
+  
+  click(){
+    for(let c of columns7){
+      if(Math.abs(this.x - c.x) < 40 && Math.abs(this.y - c.y) < 40 || Math.abs(this.w + this.x) - c.x > this.w + 400 && Math.abs(this.h + this.y) - c.y > this.h + 40){
+          this.x = c.x + 10;
+          this.y = c.y + 10;
+      }
+    }
   }
 }
 
