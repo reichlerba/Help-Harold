@@ -107,6 +107,7 @@ let boolSetupScene9 = false;
 let boolSetupScene10 = false;
 
 function setup() {
+  //setup() logic written by Benji Reichler
   createCanvas(400, 500);
   scene = 0;
   timer = (60*26);
@@ -284,7 +285,7 @@ function preload() {
 }
 
 function setupLandingScene0() {
-  //Scene 0 and helper functions created by Benji Reichler
+  //Scene 0 and helper functions created by Benji Reichler with formatting and appearance help from Carlos Bonet
   //welcome photo
   imgWelcomeScreen0.resize(400, 500);
   image(imgWelcomeScreen0, 0, 0);
@@ -504,7 +505,7 @@ function finishButtonClicked() {
 }
 
 function setup2_1Scene2() {
-  //Scene 2 logic and helper methods written by Nathaniel Joseph with some code inspired by ChatGPT and compiled here and tweaked by Benji Reichler
+  //Scene 2 logic and helper methods written and debugged by Nathaniel Joseph with some code inspired by ChatGPT and compiled here and tweaked by Benji Reichler
   strokeWeight(0.6);
   bedroomMusic1.play();
   for (let i = 0; i < 3; i++) {
@@ -537,6 +538,7 @@ function drawScene2() {
 }
 function checkPressed2() {
   let sortedDraggables = [...draggables2].sort((a, b) => a.y - b.y);
+  continueDrawing2 = false;
   for(let i = 0; i < sortedDraggables.length; i++) {
     if (sortedDraggables[i].value === order2[i]) {
      sortedDraggables[i].isCorrect = true;
@@ -547,7 +549,7 @@ function checkPressed2() {
       sortedDraggables[i].isCorrect = false;
     }
     //check if continueDrawing2 should be false
-    continueDrawing2 = false;
+    
     if(sortedDraggables[i].isIncorrect) { //will run unless every step is in the correct order
       continueDrawing2 = true;
     }
@@ -556,6 +558,8 @@ function checkPressed2() {
     finishNeedsToBeDrawn = true;
     correctSound.play();
     button2.remove();
+  } else {
+    incorrectSound.play();
   }
 }
 function mousePressed() { //will this cause problems
@@ -758,6 +762,7 @@ function answerSent3() {
 }
 
 function setup1_3Scene4() {
+  //Scene 4 and helper functions created by Benji Reichler
   //draw background image
   imgLivingRoom4.resize(500, 500);
   image(imgLivingRoom4, 0, 0, 400, 500, 20, 0, 400, 500);
@@ -838,6 +843,7 @@ function answerSent4() {
 }
 
 function setup3_1Scene5() { //uses bathroomMusic3
+  //Scene 5 and helper functions created by Carlos Bonet with assistance from Benji Reichler
   background("#c07e67");
   //strokeWeight(0); ?
   fill(0);
@@ -896,6 +902,7 @@ function answerSent5() {
 }
 
 function setup1_4Scene6() { //kitchen
+  //Scene 6 and helper functions created by Benji Reichler
   //draw background image
   imgKitchen6.resize(500, 500);
   image(imgKitchen6, 0, 0, 400, 500, 20, 0, 400, 500);
@@ -956,7 +963,7 @@ function answerSent6() {
 }
 
 function setup2_2Scene7() { //task make tea
-  //Scene 2 logic and helper methods written by Nathaniel Joseph with some code inspired by ChatGPT and compiled here and tweaked by Benji Reichler
+  //Scene 7 logic and helper methods written and debugged by Nathaniel Joseph with some code inspired by ChatGPT and compiled here and tweaked by Benji Reichler
   
   strokeWeight(0.6);
   kitchenMusic6.play();
@@ -1105,6 +1112,7 @@ class DraggableG2L7 {
 }
 
 function setup1_5Scene8() { //room music (used to be library)
+  //Scene 8 and helper functions created by Benji Reichler
   //draw background image
   imgMusicRoom8.resize(500, 500);
   image(imgMusicRoom8, 0, 0, 400, 500, 0, 0, 400, 500);
@@ -1155,6 +1163,7 @@ function answerSent8() {
 }
 
 function setup3_2Scene9() {
+  //Scene 9 and helper functions created by Carlos Bonet with assistance and formatting from Benji Reichler
   background("#c07e67");
   fill(0);
   textSize(14);
@@ -1196,6 +1205,7 @@ function answerSent9() {
 }
 
 function setupFinalCongratsScene10() {
+  //finish screen written by Benji Reichler
   background("#c07e67");
   fill(0);
   textSize(24);
