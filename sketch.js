@@ -874,7 +874,7 @@ function buttonBathroomClicked5() { //correct
   correctSound.play();
   answerSent5();
   //show correct text
-  text("Correct!", 200, 85);
+  drawCorrectTextBoxGame1();
   textSize(20);
   text("Good job!", 200, 350);
   text("Continue paying attention!", 200, 390);
@@ -883,7 +883,7 @@ function buttonIncorrectClicked5() {
   incorrectSound.play();
   answerSent5();
   //show incorrect text
-  text("Incorrect!", 200, 85);
+  drawIncorrectTextBoxGame1();
   textSize(20);
   text("This song was played in the bathroom.", 200, 350);
   text("Pay more attention next time!", 200, 390);
@@ -1178,7 +1178,7 @@ function buttonKitchenClicked9() {
   correctSound.play();
   answerSent9();
   //show correct text
-  text("Correct!", 200, 85);
+  drawCorrectTextBoxGame1();
   textSize(20);
   text("Good job!", 200, 350);
 }
@@ -1186,7 +1186,7 @@ function buttonIncorrectClicked9() {
   incorrectSound.play();
   answerSent9();
   //show incorrect text
-  text("Incorrect!", 200, 85);
+  drawIncorrectTextBoxGame1();
   textSize(20);
   text("This song was played in the kitchen", 200, 350);
   text("Pay more attention next time!", 200, 390);
